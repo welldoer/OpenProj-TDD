@@ -12,6 +12,10 @@ plugins {
     
     // Apply the application plugin to add support for building an application
     id 'application'
+
+    id "org.sonarqube" version "2.6"
+    
+    id "jacoco"
 }
 
 // In this section you declare where to find the dependencies of your project
@@ -40,3 +44,13 @@ dependencies {
 	testImplementation 'org.assertj:assertj-swing-junit:3.8.0'
 }
 
+jacocoTestReport {
+    reports {
+    	xml.enabled  = true
+        html.enabled = false
+    }
+}
+
+check.dependsOn jacocoTestReport
+
+mainClassName = 'Main'
